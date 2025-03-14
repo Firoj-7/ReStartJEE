@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReStart JEE - IIT JEE Preparation</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #1a237e;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .logo span {
+            color: #ff5722;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ff5722;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: white;
+            margin: 3px 0;
+            display: block;
+            transition: transform 0.3s;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/600') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-btn {
+            display: inline-block;
+            background-color: #ff5722;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .hero-btn:hover {
+            background-color: #e64a19;
+        }
+        
+        /* Subjects Section */
+        .subjects {
+            padding: 50px 0;
+        }
+        
+        .subjects h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #1a237e;
+            position: relative;
+        }
+        
+        .subjects h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ff5722;
+        }
+        
+        .subject-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .subject-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .subject-img {
+            height: 160px;
+            background-color: #ddd;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .physics-img {
+            background-image: url('/api/placeholder/300/160');
+        }
+        
+        .chemistry-img {
+            background-image: url('/api/placeholder/300/160');
+        }
+        
+        .maths-img {
+            background-image: url('/api/placeholder/300/160');
+        }
+        
+        .subject-info {
+            padding: 20px;
+        }
+        
+        .subject-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+        
+        .subject-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .subject-btn {
+            display: inline-block;
+            background-color: #1a237e;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .subject-btn:hover {
+            background-color: #0d1642;
+        }
+        
+        /* Chapters Section */
+        .chapters {
+            padding: 50px 0;
+            display: none;
+        }
+        
+        .chapters h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #1a237e;
+            position: relative;
+        }
+        
+        .chapters h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ff5722;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn i {
+            margin-right: 5px;
+        }
+        
+        .chapter-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .chapter-item {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .chapter-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .chapter-item h3 {
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .chapter-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Topics Section */
+        .topics {
+            padding: 50px 0;
+            display: none;
+        }
+        
+        .topics h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: #1a237e;
+            position: relative;
+        }
+        
+        .topics h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #ff5722;
+        }
+        
+        .topic-list {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .topic-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .topic-item:last-child {
+            border-bottom: none;
+        }
+        
+        .topic-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .topic-info h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .topic-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .pdf-btn {
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .pdf-btn:hover {
+            background-color: #e64a19;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a237e;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #ff5722;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #ff5722;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                flex-direction: column;
+                width: 100%;
+                background-color: #1a237e;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 999;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .subject-cards {
+                justify-content: center;
+            }
+            
+            .subject-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .chapter-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .topic-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .pdf-btn {
+                margin-top: 10px;
+            }
+            
+            .footer-column {
+                flex: 100%;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">ReStart <span>JEE</span></div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Prepare for IIT JEE with ReStart JEE</h1>
+            <p>Access high-quality study materials, topic-wise notes, and comprehensive resources to ace your JEE preparation journey.</p>
+            <a href="#subjects" class="hero-btn">Explore Subjects</a>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section class="subjects" id="subjects">
+        <div class="container">
+            <h2>Select a Subject</h2>
+            <div class="subject-cards">
+                <div class="subject-card" id="physics">
+                    <div class="subject-img physics-img"></div>
+                    <div class="subject-info">
+                        <h3>Physics</h3>
+                        <p>Master the fundamental principles and concepts of Physics for IIT JEE.</p>
+                        <a href="chapter-page-layout1.html" class="subject-btn" data-subject="physics">Explore Chapters</a>
+                    </div>
+                </div>
+                <div class="subject-card" id="chemistry">
+                    <div class="subject-img chemistry-img"></div>
+                    <div class="subject-info">
+                        <h3>Chemistry</h3>
+                        <p>Learn organic, inorganic, and physical chemistry concepts for JEE.</p>
+                        <a href="#" class="subject-btn" data-subject="chemistry">Explore Chapters</a>
+                    </div>
+                </div>
+                <div class="subject-card" id="maths">
+                    <div class="subject-img maths-img"></div>
+                    <div class="subject-info">
+                        <h3>Mathematics</h3>
+                        <p>Strengthen your problem-solving skills with comprehensive Mathematics material.</p>
+                        <a href="#" class="subject-btn" data-subject="mathematics">Explore Chapters</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapters Section (Initially Hidden) -->
+    <section class="chapters" id="chapters">
+        <div class="container">
+            <a href="#" class="back-btn" id="backToSubjects">← Back to Subjects</a>
+            <h2 id="chapterTitle">Physics Chapters</h2>
+            <div class="chapter-list" id="chapterList">
+                <!-- Chapters will be dynamically populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section (Initially Hidden) -->
+    <section class="topics" id="topics">
+        <div class="container">
+            <a href="#" class="back-btn" id="backToChapters">← Back to Chapters</a>
+            <h2 id="topicTitle">Chapter Topics</h2>
+            <div class="topic-list" id="topicList">
+                <!-- Topics will be dynamically populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ReStart JEE</h3>
+                    <p>Your ultimate destination for IIT JEE preparation with comprehensive study materials and resources.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Subjects</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Subjects</h3>
+                    <ul>
+                        <li><a href="#">Physics</a></li>
+                        <li><a href="#">Chemistry</a></li>
+                        <li><a href="#">Mathematics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: info@restartjee.com</li>
+                        <li>Phone: +91 12345 67890</li>
+                        <li>Address: New Delhi, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ReStart JEE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample Data Structure for JEE Content
+        const jeeContent = {
+            physics: {
+                name: "Physics",
+                chapters: [
+                    {
+                        id: "mechanics",
+                        title: "Mechanics",
+                        description: "Study of motion, forces, energy, and momentum",
+                        topics: [
+                            {
+                                id: "kinematics",
+                                title: "Kinematics",
+                                description: "Motion in one and two dimensions",
+                                pdfUrl: "#kinematics-pdf"
+                            },
+                            {
+                                id: "laws-of-motion",
+                                title: "Laws of Motion",
+                                description: "Newton's laws and their applications",
+                                pdfUrl: "#laws-of-motion-pdf"
+                            },
+                            {
+                                id: "work-energy",
+                                title: "Work, Energy & Power",
+                                description: "Conservation of energy and its applications",
+                                pdfUrl: "#work-energy-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "electromagnetism",
+                        title: "Electromagnetism",
+                        description: "Study of electricity, magnetism, and electromagnetic waves",
+                        topics: [
+                            {
+                                id: "electrostatics",
+                                title: "Electrostatics",
+                                description: "Electric charges, fields, and potentials",
+                                pdfUrl: "#electrostatics-pdf"
+                            },
+                            {
+                                id: "current-electricity",
+                                title: "Current Electricity",
+                                description: "Electric current, resistance, and circuits",
+                                pdfUrl: "#current-electricity-pdf"
+                            },
+                            {
+                                id: "magnetism",
+                                title: "Magnetism",
+                                description: "Magnetic fields and electromagnetic induction",
+                                pdfUrl: "#magnetism-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "thermodynamics",
+                        title: "Thermodynamics",
+                        description: "Study of heat, temperature, and energy transfer",
+                        topics: [
+                            {
+                                id: "heat-temperature",
+                                title: "Heat & Temperature",
+                                description: "Thermal equilibrium and thermometers",
+                                pdfUrl: "#heat-temperature-pdf"
+                            },
+                            {
+                                id: "laws-thermodynamics",
+                                title: "Laws of Thermodynamics",
+                                description: "First and second laws with applications",
+                                pdfUrl: "#laws-thermodynamics-pdf"
+                            }
+                        ]
+                    }
+                ]
+            },
+            chemistry: {
+                name: "Chemistry",
+                chapters: [
+                    {
+                        id: "physical-chemistry",
+                        title: "Physical Chemistry",
+                        description: "Study of macroscopic and atomic properties of chemical systems",
+                        topics: [
+                            {
+                                id: "chemical-equilibrium",
+                                title: "Chemical Equilibrium",
+                                description: "Equilibrium constants and Le Chatelier's principle",
+                                pdfUrl: "#chemical-equilibrium-pdf"
+                            },
+                            {
+                                id: "thermochemistry",
+                                title: "Thermochemistry",
+                                description: "Energy changes in chemical reactions",
+                                pdfUrl: "#thermochemistry-pdf"
+                            },
+                            {
+                                id: "electrochemistry",
+                                title: "Electrochemistry",
+                                description: "Redox reactions and electrochemical cells",
+                                pdfUrl: "#electrochemistry-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "organic-chemistry",
+                        title: "Organic Chemistry",
+                        description: "Study of carbon compounds and their reactions",
+                        topics: [
+                            {
+                                id: "basic-concepts",
+                                title: "Basic Concepts",
+                                description: "Hybridization, isomerism, and nomenclature",
+                                pdfUrl: "#organic-basics-pdf"
+                            },
+                            {
+                                id: "hydrocarbons",
+                                title: "Hydrocarbons",
+                                description: "Alkanes, alkenes, alkynes, and aromatic compounds",
+                                pdfUrl: "#hydrocarbons-pdf"
+                            },
+                            {
+                                id: "functional-groups",
+                                title: "Functional Groups",
+                                description: "Alcohols, aldehydes, ketones, and carboxylic acids",
+                                pdfUrl: "#functional-groups-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "inorganic-chemistry",
+                        title: "Inorganic Chemistry",
+                        description: "Study of elements and their compounds",
+                        topics: [
+                            {
+                                id: "periodic-table",
+                                title: "Periodic Table & Properties",
+                                description: "Periodic trends and element properties",
+                                pdfUrl: "#periodic-table-pdf"
+                            },
+                            {
+                                id: "coordination-compounds",
+                                title: "Coordination Compounds",
+                                description: "Transition metals and complex formation",
+                                pdfUrl: "#coordination-compounds-pdf"
+                            }
+                        ]
+                    }
+                ]
+            },
+            mathematics: {
+                name: "Mathematics",
+                chapters: [
+                    {
+                        id: "algebra",
+                        title: "Algebra",
+                        description: "Study of mathematical symbols and rules for manipulating them",
+                        topics: [
+                            {
+                                id: "complex-numbers",
+                                title: "Complex Numbers",
+                                description: "Operations and applications of complex numbers",
+                                pdfUrl: "#complex-numbers-pdf"
+                            },
+                            {
+                                id: "quadratic-equations",
+                                title: "Quadratic Equations",
+                                description: "Solutions and properties of quadratic equations",
+                                pdfUrl: "#quadratic-equations-pdf"
+                            },
+                            {
+                                id: "matrices-determinants",
+                                title: "Matrices & Determinants",
+                                description: "Operations and applications in linear algebra",
+                                pdfUrl: "#matrices-determinants-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "calculus",
+                        title: "Calculus",
+                        description: "Study of continuous change and its applications",
+                        topics: [
+                            {
+                                id: "limits-continuity",
+                                title: "Limits & Continuity",
+                                description: "Foundational concepts of calculus",
+                                pdfUrl: "#limits-continuity-pdf"
+                            },
+                            {
+                                id: "differentiation",
+                                title: "Differentiation",
+                                description: "Derivatives and their applications",
+                                pdfUrl: "#differentiation-pdf"
+                            },
+                            {
+                                id: "integration",
+                                title: "Integration",
+                                description: "Indefinite and definite integrals",
+                                pdfUrl: "#integration-pdf"
+                            }
+                        ]
+                    },
+                    {
+                        id: "coordinate-geometry",
+                        title: "Coordinate Geometry",
+                        description: "Study of geometric objects using coordinates",
+                        topics: [
+                            {
+                                id: "straight-lines",
+                                title: "Straight Lines",
+                                description: "Equations and properties of lines",
+                                pdfUrl: "#straight-lines-pdf"
+                            },
+                            {
+                                id: "circles",
+                                title: "Circles",
+                                description: "Equations and properties of circles",
+                                pdfUrl: "#circles-pdf"
+                            },
+                            {
+                                id: "conic-sections",
+                                title: "Conic Sections",
+                                description: "Parabola, ellipse, and hyperbola",
+                                pdfUrl: "#conic-sections-pdf"
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // DOM Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const subjectsSection = document.getElementById('subjects');
+        const chaptersSection = document.getElementById('chapters');
+        const topicsSection = document.getElementById('topics');
+        const subjectBtns = document.querySelectorAll('.subject-btn');
+        const backToSubjectsBtn = document.getElementById('backToSubjects');
+        const backToChaptersBtn = document.getElementById('backToChapters');
+        const chapterTitle = document.getElementById('chapterTitle');
+        const chapterList = document.getElementById('chapterList');
+        const topicTitle = document.getElementById('topicTitle');
+        const topicList = document.getElementById('topicList');
+
+        // Current state
+        let currentSubject = null;
+        let currentChapter = null;
+
+        // Toggle Mobile Menu
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Subject Buttons Click Event
+        subjectBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const subject = e.target.getAttribute('data-subject');
+                showChapters(subject);
+            });
+        });
+
+        // Back to Subjects Button Click Event
+        backToSubjectsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSubjects();
+        });
+
+        // Back to Chapters Button Click Event
+        backToChaptersBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showChapters(currentSubject);
+        });
+
+        // Show Chapters Function
+        function showChapters(subject) {
+            currentSubject = subject;
+            const subjectData = jeeContent[subject];
+
+            // Update chapter title
+            chapterTitle.textContent = `${subjectData.name} Chapters`;
+
+            // Clear and populate chapter list
+            chapterList.innerHTML = '';
+            subjectData.chapters.forEach(chapter => {
+                const chapterElement = document.createElement('div');
+                chapterElement.className = 'chapter-item';
+                chapterElement.innerHTML = `
+                    <h3>${chapter.title}</h3>
+                    <p>${chapter.description}</p>
+                    <a href="#" class="subject-btn chapter-btn" data-chapter="${chapter.id}">View Topics</a>
+                `;
+                chapterList.appendChild(chapterElement);
+            });
+
+            // Add event listeners to chapter buttons
+            document.querySelectorAll('.chapter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const chapterId = e.target.getAttribute('data-chapter');
+                    showTopics(chapterId);
+                });
+            });
+
+            // Hide subjects section, show chapters section
+            subjectsSection.style.display = 'none';
+            chaptersSection.style.display = 'block';
+            topicsSection.style.display = 'none';
+
+            // Scroll to chapters section
+            chaptersSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Show Topics Function
+        function showTopics(chapterId) {
+            currentChapter = chapterId;
+            
+            // Find the chapter data
+            const chapter = jeeContent[currentSubject].chapters.find(ch => ch.id === chapterId);
+            
+            // Update topic title
+            topicTitle.textContent = `${chapter.title} Topics`;
+            
+            // Clear and populate topic list
+            topicList.innerHTML = '';
+            chapter.topics.forEach(topic => {
+                const topicElement = document.createElement('div');
+                topicElement.className = 'topic-item';
+                topicElement.innerHTML = `
+                    <div class="topic-info">
+                        <h3>${topic.title}</h3>
+                        <p>${topic.description}</p>
+                    </div>
+                    <button class="pdf-btn" data-pdf="${topic.pdfUrl}">Open PDF</button>
+                `;
+                topicList.appendChild(topicElement);
+            });
+            
+            // Add event listeners to PDF buttons
+            document.querySelectorAll('.pdf-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const pdfUrl = e.target.getAttribute('data-pdf');
+                    // Simulate opening PDF - in a real site, this would redirect to the PDF file
+                    alert(`PDF would open: ${pdfUrl}`);
+                });
+            });
+            
+            // Hide chapters section, show topics section
+            subjectsSection.style.display = 'none';
+            chaptersSection.style.display = 'none';
+            topicsSection.style.display = 
